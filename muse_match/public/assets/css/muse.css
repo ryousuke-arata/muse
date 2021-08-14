@@ -1,0 +1,218 @@
+body {
+    margin: 0;
+    top: 0;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+.container {
+    margin: 0 80px 0 80px;
+}
+
+li {
+    list-style: none;
+}
+
+footer {
+    background-color: rgb(21, 21, 143);
+    text-align: center;
+    font-size: 30px;
+    color: white;
+}
+
+.copyright {
+    font-size: 10px;
+}
+
+.btn {
+    text-align: center;
+    background-color: rgb(18, 172, 51);
+}
+
+header {
+    background-color: rgb(21, 21, 143);
+    list-style: none;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+.header-logo {
+    text-align: center;
+    color: white;
+    font-size: 50px;
+    font-style: italic;
+    margin-top: 0;
+}
+
+.user-hednav {
+    text-align: center;
+}
+
+.user-hednav a {
+    font-size: 20px;
+    color: white;
+}
+
+.post-header-nav ul {
+    display: flex;
+    justify-content: space-around;
+}
+
+.post-header-nav-item {
+    margin-right: 0;
+}
+
+main {
+    width: 100%;
+    height: 500px;
+    position: relative;
+}
+
+.form-area {
+    overflow: hidden;
+    display: table;
+    width: 50%;
+    height: 50%;
+    background-color: rgba(139, 136, 136, 0.6);
+    text-align: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.form-area form {
+    width: 100%;
+    height: 100%;
+}
+
+
+.form-area table {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-table {
+   margin: 0 auto;
+   width: 40%;
+}
+
+.profile-table tr {
+    border: 1px solid rgb(54, 54, 54);
+}
+
+.profile-table th {
+    border: solid 1px #000;
+    background-color: rgb(110, 108, 108);
+    white-space: nowrap;
+}
+
+.profile-td {
+    border: 1px solid #000;
+    width: 30%;
+}
+
+.profile-ta {
+    border: 1px solid #000;
+    word-break: break-all;
+}
+
+.posts-area, .messages-area {
+    text-align: center;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+.post-item, .message-item {
+    margin-bottom: 30px;
+    border: 2px solid rgb(153, 79, 79);
+}
+
+.post-title {
+    border-bottom: 1px solid #000;
+    background-color: rgb(110, 107, 107);
+    color: #fff;
+}
+
+.post-parts {
+    border-bottom: 1px solid #000;
+}
+
+.part-title {
+    font-weight: bold;
+}
+
+.post-content, .send-message {
+    text-align: left;
+}
+
+.updated-at {
+    text-align: right;
+    color: black;
+    opacity: 0.7;
+    font-size: 10px;
+}
+
+.posts-area a {
+    text-decoration: none;
+    color: black;
+}
+
+.follow-btn {
+    width: 40%;
+    text-align: right;
+    margin: 0 auto;
+}
+
+.post-user-id a {
+    color: rgb(248, 44, 44);
+}
+
+.message-create {
+    width: 40%;
+    text-align: right;
+    margin: 0 auto;
+}
+
+.message-create a {
+    text-decoration: none;
+    border: white solid 2px;
+    background-color: rgb(224, 224, 129);
+    color: rgb(41, 41, 250);
+}
+
+.messages-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.send-user {
+    border-bottom: 1px solid #000;
+}
+
+.message-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.receive-messages-area {
+    text-align: center;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}

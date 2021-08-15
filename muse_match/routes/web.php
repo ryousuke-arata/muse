@@ -53,10 +53,6 @@ Route::get('post-single-{id?}', $postNamespace . 'single_post');
 
 Route::get('user-page/{person_id?}', $postNamespace . 'user_page');
 
-Route::post('user-page/{person_id?}', $followNamespace . 'followCtrl');
-
-Route::get('user-{follow?}', $followNamespace . 'follows');
-
 Route::get('{person_id?}/post-single-{id?}/message', $postNamespace . 'message_create');
 
 Route::post('{person_id?}/post-single-{id?}/message-new', $postNamespace . 'message_create_post');

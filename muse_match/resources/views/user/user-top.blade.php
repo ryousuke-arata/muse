@@ -35,15 +35,7 @@
         </tr>
     </table>
     
-    @if (strpos($url, 'user-page') !== false)
-    <div class="follow-btn">
-        <form action='http://localhost:81/muse_match/public/user-page/{{$session->id}}' method="post">
-            @csrf
-            <input type="hidden" name="id" value="{{$session->id}}">
-            <input type="submit" value="フォロー" style="background-color: {{$color}};">
-        </form>
-    </div>
-    @endif
+    
     <div class="posts-area">
         @foreach ($posts as $post)
           <a href="http://localhost:81/muse_match/public/messages/{{$post->id}}">

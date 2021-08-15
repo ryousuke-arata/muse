@@ -24,28 +24,6 @@
           </div>
       </div>
    </div>
-   
-   <div class="message-create">
-      <a href="http://localhost:81/muse_match/public/{{$post->person_id}}/post-single-{{$post->id}}/message">メッセージを送る</a>
-   </div>
-
-   <p class="messages-title">この募集文へのメッセージ</p>
-    @isset($messages)
-    <div class="messages-area">
-        @foreach ($messages as $message)
-            <div class="message-item">
-                <div class="send-user">
-                    <p>ID: {{$message->send_user_id}}</p>
-                    <p>{{$message->send_user_name}}</p>
-                </div>
-                <div class="send-message">
-                    <p>{{$message->message}}</p>
-                    <p class="updated-at">{{$message->created_at}}</p>
-                </div>
-            </div>
-        @endforeach
-    </div>
-    @endisset
 
     @include('components.user-footer')
 </body>

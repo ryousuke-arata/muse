@@ -48,54 +48,8 @@ class PostController extends Controller
         $url = $request->url();
         $user = Post::userPageGet($person_id);
         $posts = Post::userPostsGet($person_id);
-        $color = Follow::followCheck($person_id);
-        return view('user.user-top', ['session' => $user, 'posts' => $posts, 'url' => $url, 'color' => $color]);
+        return view('user.user-top', ['session' => $user, 'posts' => $posts, 'url' => $url]);
     }
 ///////////////////////////////////////////////////////////////////////////////
-
-//////////////////////募集文へメッセージ送信/////////////////////////////
-    public function message_create(Request $request, $person_id, $id)
-    {
-        $url = $request->url();
-        return view('post.message-create', ['url' => $url, 'person_id' => $person_id, 'id' => $id]);
-    }
-
-    public function message_create_post(Request $request, $person_id, $id)
-    {
-        $url = $request->url();
-        $message = Post::messageSend($request, $id, $person_id);
-        return view('post.message-conf', ['url' => $url, 'message' => $message, 'replay_message' => '']);
-    }
-//////////////////////////////////////////////////////////////////
-
-//////////////////////受信したメッセージ一覧/////////////////////////////
-    public function receive_messages(Request $request, $id)
-    {
-        $url = $request->url();
-        $messages = Post::receiveMessages($id);
-        return view('post.message-receive', ['url' => $url, 'messages' => $messages]); 
-    }
-///////////////////////////////////////////////////////////////////////
-
-//////////////////////受信したメッセージに返信///////////////////////////////////////////////
-    public function reply_message(Request $request, )
-    {
-        $url = $request->url();
-        return view('post.message-create', ['url' => $url]);
-    }
-
-
-    public function reply_message_post(Request $request, $post_id, $message_id)
-    {
-        $url = $request->url();
-        $messages = Post::receiveMessages($post_id);
-        $reply_message = Post::replyMessage($request, $post_id, $message_id);
-        return view('post.message-receive', ['url' => $url, 'messages' => $messages, 'reply_message' => $reply_message]);
-    }
-
-    public function test() {
-        $items = Post::all();
-        return view('test.test', ['items' => $items]);
-    }
     //
 }

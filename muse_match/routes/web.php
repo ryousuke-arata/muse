@@ -53,16 +53,4 @@ Route::get('post-single-{id?}', $postNamespace . 'single_post');
 
 Route::get('user-page/{person_id?}', $postNamespace . 'user_page');
 
-Route::get('{person_id?}/post-single-{id?}/message', $postNamespace . 'message_create');
-
-Route::post('{person_id?}/post-single-{id?}/message-new', $postNamespace . 'message_create_post');
-
-Route::get('messages/{id?}', $postNamespace . 'receive_messages');
-
-Route::get('post-{post_id?}/message-{message_id?}/reply', $postNamespace . 'reply_message');
-
-Route::get('post-{{$post_id}}/reply_message-{{message_id?}}/reply"', $postNamespace . 'reply_message');
-
-Route::post('post-{post_id?}/post-single-/{message_id?}/message-new', $postNamespace . 'reply_message_post');
-
 Route::get('test', $postNamespace . 'test');

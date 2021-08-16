@@ -18,17 +18,19 @@ class Person extends Model
     }
 
     protected $guarded = array( //入力必須でない項目の設定
-        'career', 
         'pr',
     );
+
+    //データ登録時の時間自動登録を無効化
+    const CREATED_AT = null;
+    const UPDATED_AT = null;
+
     public $incrementing = false;//プライマリキーの自動増減を停止
-    public $timeStamps = false;//created_atの自動更新を停止
     public static $rules = array(//validationルールの設定
         'id' => 'required',
         'mail' => 'required|email',
         'pass' => 'required',
         'name' => 'required',
-        'ins' => 'required',
     );
 
     public static $messages = array(//エラーメッセージの変更
@@ -37,7 +39,6 @@ class Person extends Model
         'mail.email' => 'メールアドレスを入力してください',
         'pass.required' => 'パスワードが違います',
         'name.required' => '名前を入力してください',
-        'ins.required' => '担当楽器を入力してください',
     );
  
     protected $primaryKey = 'id';//プライマリキーの指定
@@ -68,7 +69,8 @@ class Person extends Model
         return $data;
     }
 
-    public static function dataUpdate($request) {
+    public static function dataUpdate($request) 
+    {
         $session = session()->get('login_user');
 
         if($request->url() == 'http://localhost:81/muse_match/public/user-update-top') {
@@ -78,7 +80,6 @@ class Person extends Model
                 'name' => $request->name,
                 'ins' => $request->ins,
                 'pass' => $session->pass,
-                'career'=> $session->career,
                 'pr' => $session->pr,
             ];
             $postParam = [
@@ -89,8 +90,8 @@ class Person extends Model
             Post::where('person_id', $session->id)->where('person_name', $session->name)->update($postParam);
             $data = self::where('id', $request->id)->where('mail', $request->mail)->first();
         } else {
-            self::where('id', $session->id)->where('mail', $session->mail)->update(['career' => $request->career, 'pr' => $request->pr]);
-            $data = self::where('career', $request->career)->where('pr', $request->pr)->first();
+            self::where('id', $session->id)->where('mail', $session->mail)->update(['pr' => $request->pr]);
+            $data = self::where('pr', $request->pr)->first();
         }
         session()->put('login_user', $data);
     }

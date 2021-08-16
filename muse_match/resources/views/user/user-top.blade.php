@@ -16,19 +16,13 @@
         <tr>
             <th>ユーザーID</th>
             <th>ユーザー名</th>
-            <th>使用楽器</th>
         </tr>
         <tr>
             <td class="profile-td">{{$session->id}}</td>
             <td class="profile-td">{{$session->name}}</td>
-            <td class="profile-td">{{$session->ins}}</td>
         </tr>
     </table>
     <table class="profile-table">
-        <tr>
-            <th>経歴</th>
-            <td class="profile-ta">{{$session->career}}</td>
-        </tr>
         <tr>
             <th>自己PR</th>
             <td class="profile-ta">{{$session->pr}}</td>
@@ -44,8 +38,12 @@
                    <h3><span>タイトル： </span>{{$post->title}}</h3>
                </div>
                <div class="post-parts">
-                   <p class="parts-title">・募集楽器</p>
-                   <p>{{$post->parts}}</p>
+                   <p class="parts-title">・開催場所</p>
+                   <p>{{$post->venue}}</p>
+               </div>
+               <div class="post-parts">
+                   <p class="parts-title">・開催日時</p>
+                   <p>{{$post->start_date}}{{$post->start_time}}</p>
                </div>
                <div class="post-content">
                    <p>{{$post->content}}</p>

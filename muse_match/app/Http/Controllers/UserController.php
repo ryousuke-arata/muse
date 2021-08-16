@@ -42,7 +42,7 @@ class UserController extends Controller
     }
     //////////////////
 
-    ////////////経歴・自己PR
+    ////////////経歴・自己PR//////////////////////////
     public function pr_update(Request $request)
     {
         $session = session()->get('login_user');

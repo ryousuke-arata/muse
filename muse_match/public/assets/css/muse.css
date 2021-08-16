@@ -150,8 +150,13 @@ main {
     border-bottom: 1px solid #000;
 }
 
-.part-title {
+.parts-title {
     font-weight: bold;
+    font-size: 20px;
+}
+
+.start-datetime {
+    border-bottom: 1px solid #000;
 }
 
 .post-content, .send-message {
@@ -169,7 +174,6 @@ main {
     text-decoration: none;
     color: black;
 }
-
 
 .post-user-id a {
     color: rgb(248, 44, 44);

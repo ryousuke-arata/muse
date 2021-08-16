@@ -13,8 +13,13 @@
             <td><input class="post-form-area" type="text" name="title"></td>
         </tr>
         <tr>
-            <th>募集楽器</th>
-            <td><input class="post^-form-area" type="text" name="parts"></td>
+            <th>開催場所</th>
+            <td><input class="post-form-area" type="text" name="venue"></td>
+        </tr>
+        <tr>
+            <th>開催日時</th>
+            <td><input class="post-form-area" type="date" name="start_date"></td>
+            <td><input class="post-form-area" type="time" name="start_time"></td>
         </tr>
         <tr>
             <th>投稿文</th>

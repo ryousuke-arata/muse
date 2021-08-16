@@ -27,10 +27,11 @@ class Post extends Model
         $person = session()->get('login_user');
         $param = [
             'person_id' => $person->id,
-            
             'person_name' => $person->name,
             'title' => $request->title,
-            'parts' => $request->parts,
+            'venue' => $request->venue,
+            'start_date' => $request->start_date,
+            'start_time' => $request->start_time,
             'content' => $request->content, 
         ];
         $id = self::insertGetId($param);
@@ -38,20 +39,6 @@ class Post extends Model
         return $data;
     }
     //////////////////////////////////////
-
-     //////////////投稿内容表示//////////////////
-    public static function singlePostGet($id)
-    {
-        $post = self::where('id', $id)->first();
-        return $post;
-    }
-
-    public static function singlePostMessages($id)
-    {
-        $messages = DB::table('messages')->where('source_message_id', $id)->get();
-        return $messages;
-    }
-    ////////////////////////////////////////////
     
      //////////////投稿からのユーザー情報表示//////////////////
     public static function userPageGet($person_id)

@@ -26,8 +26,9 @@ class PostController extends Controller
 
     public function post_new_post(Request $request)
     {
+        $url = $request->url();
         $post = Post::newPost($request);
-        return view('post.post-single', ['post' => $post]);
+        return view('post.post-single', ['post' => $post, 'url' => $url]);
     }
 ///////////////////////////////////////////////////////////
 
@@ -35,9 +36,8 @@ class PostController extends Controller
     public function single_post(Request $request, $id)
     {
         $url = $request->url();
-        $post = Post::singlePostGet($id);
-        $messages = Post::singlePostMessages($id);
-        return view('post.post-single', ['url' => $url, 'post' => $post, 'messages' => $messages]);
+        $post = Post::where('id', $id)->first();
+        return view('post.post-single', ['url' => $url, 'post' => $post]);
     }
 ///////////////////////////////////////////////////////////
 

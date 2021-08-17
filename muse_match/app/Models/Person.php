@@ -113,6 +113,7 @@ class Person extends Model
 
     public static function sessionCheck($link, $request, $session, $posts)
     {
+      if(isset($posts)) {
         $fav_counts = [];
         foreach($posts as $post) {
             $fav = DB::table('favs')->where('post_id', $post->id)->first();
@@ -124,10 +125,19 @@ class Person extends Model
             'posts' => $posts,
             'fav_counts' => $fav_counts,
         ];
+      } else {
+        $param = [
+            'session' => $session,
+            'url' => $request->url(),
+            'posts' => $posts,
+            'fav_counts' => null,
+        ];
+      }
+
         if(isset($session)) {
             return view($link, $param);
         } else {
-            return view('user.user-login', $param);
+            return view('user.user-login', ['url' => $url]);
         }
     }
 

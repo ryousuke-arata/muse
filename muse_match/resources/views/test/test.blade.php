@@ -1,3 +1,5 @@
 @php
-   var_dump($session);
+    $keys = array_keys($fav_count);
+    $key = max($keys);
+    var_dump($key);
 @endphp

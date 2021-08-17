@@ -22,6 +22,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('index', $postNamespace . 'no_user_index');
+
 Route::get('posts', $postNamespace . 'index');
 
 Route::get('user-top', $userNamespace . 'user_top');

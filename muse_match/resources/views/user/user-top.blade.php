@@ -28,31 +28,35 @@
     @if ($posts != '')
     <div class="posts-area">
         @foreach ($posts as $post)
-         @foreach ($fav_counts as $fav_count)
-          <a href="http://localhost:81/muse_match/public/messages/{{$post->id}}">
-           <div class="post-item">
-               <div class="post-title">
-                   <h3><span>タイトル： </span>{{$post->title}}</h3>
-               </div>
-               <div class="post-parts">
-                   <p class="parts-title">・開催場所</p>
-                   <p>{{$post->venue}}</p>
-               </div>
-               <div class="post-parts">
-                   <p class="parts-title">・開催日時</p>
-                   <p>{{$post->start_date}}{{$post->start_time}}</p>
-               </div>
-               <div class="post-content">
-                   <p>{{$post->content}}</p>
-                   <p class="updated-at">{{$post->updated_at}}</p>
-               </div>
-               <div class="fav-area">
-                   <img src="../public/storage/ハートのマーク.png" alt="いいねの数">
-                   <p>{{$fav_count}}</p>
-               </div>
-           </div>
-          </a>
-         @endforeach
+           @foreach ($fav_counts as $fav_count)
+            @if ($url != "http://localhost:81/muse_match/public/user-top")
+              <a href="http://localhost:81/muse_match/public/messages/{{$post->id}}">
+            @endif
+                <div class="post-item">
+                  <div class="post-title">
+                     <h3><span>タイトル： </span>{{$post->title}}</h3>
+                  </div>
+                  <div class="post-parts">
+                      <p class="parts-title">・開催場所</p>
+                      <p>{{$post->venue}}</p>
+                  </div>
+                  <div class="post-parts">
+                      <p class="parts-title">・開催日時</p>
+                     <p>{{$post->start_date}}{{$post->start_time}}</p>
+                  </div>
+                  <div class="post-content">
+                      <p>{{$post->content}}</p>
+                      <p class="updated-at">{{$post->updated_at}}</p>
+                  </div>
+                  <div class="fav-area">
+                      <img src="../public/storage/ハートのマーク.png" alt="いいねの数">
+                      <p>{{$fav_count}}</p>
+                  </div>
+                </div>
+             @if ($url != "http://localhost:81/muse_match/public/user-top")
+              </a>
+             @endif
+            @endforeach
         @endforeach
     </div>
     @endif

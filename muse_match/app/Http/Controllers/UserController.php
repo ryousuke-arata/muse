@@ -40,7 +40,6 @@ class UserController extends Controller
         $posts = $data->posts;
         $fav_counts = Person::loginFavCount($request);
         return view('user.user-top', ['session' => $session, 'posts' => $posts, 'url' => $url, 'fav_counts' => $fav_counts]);
-        /* return view('test.test', ['fav_count' => $fav_count]); */
     }
     //////////////////
 
@@ -48,7 +47,7 @@ class UserController extends Controller
     public function pr_update(Request $request)
     {
         $session = session()->get('login_user');
-        $next = Person::sessionCheck('user.pr', $request, $session, '');
+        $next = Person::sessionCheck('user.pr', $request, $session, null);
         return $next;
     }
 
@@ -66,7 +65,7 @@ class UserController extends Controller
     public function user_update(Request $request)
     {
         $session = session()->get('login_user');
-        $next = Person::sessionCheck('user.user-update', $request, $session, '');
+        $next = Person::sessionCheck('user.user-update', $request, $session, null);
         return $next;
     }
 

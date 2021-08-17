@@ -46,6 +46,16 @@ class Post extends Model
         DB::table('favs')->where('post_id', $id)->update(['fav_count' => $request->fav_count + 1]);
         return DB::table('favs')->where('post_id', $id)->first();
     }
+
+    public static function indexFavGet($posts)
+    {
+        $fav_count = [];
+        foreach ($posts as $post) {
+            $fav = DB::table('favs')->where('post_id', $post->id)->first();
+            $fav_count[] += $fav->fav_count;
+        }
+        return $fav_count;
+    }
     
      //////////////投稿からのユーザー情報表示//////////////////
     public static function userPageGet($person_id)

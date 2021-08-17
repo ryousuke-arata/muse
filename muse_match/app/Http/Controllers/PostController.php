@@ -9,19 +9,33 @@ use App\Models\Follow;
 
 class PostController extends Controller
 {
+    public function no_user_index(Request $request)
+    {
+        $url = $request->url();
+        $posts = Post::all();
+        $fav_counts = Post::indexFavGet($posts);
+        $data = array($posts, $fav_counts);
+        return view('muse.index', ['posts' => $posts, 'url' => $url, 'fav_counts' => $fav_counts]);
+        /*return view('test.test', ['data' => $data]);*/
+    }
+
     public function index(Request $request)
     {
         $url = $request->url();
         $session = session()->get('login_user');
         $posts = Post::where('person_id', '<>', $session->id)->get();
-        return view('muse.index', ['posts' => $posts, 'url' => $url]);
+        $fav_counts = Post::indexFavGet($posts);
+        $data = array($posts, $fav_counts);
+        return view('muse.index', ['session' => $session,'posts' => $posts, 'url' => $url, 'fav_counts' => $fav_counts]);
+        /*return view('test.test', ['data' => $data]);*/
     }
 
 //////////////////////募集文投稿/////////////////////////////
     public function post_new(Request $request)
     {
         $url = $request->url();
-        return view('post.post-new', ['url' => $url]);
+        $session = session()->get('login_user');
+        return view('post.post-new', ['session' => $session, 'url' => $url]);
     }
 
     public function post_new_post(Request $request)

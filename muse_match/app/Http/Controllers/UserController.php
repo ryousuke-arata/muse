@@ -21,7 +21,7 @@ class UserController extends Controller
         $person = new Person;
         Person::createSave($request, $person);
         $session = session()->get('login_user');
-        return view('user.user-top', ['session' => $session, 'posts' => '', 'url' => $url]);
+        return view('user.user-top', ['session' => $session, 'posts' => '', 'url' => $url, 'fav_counts' => 0]);
     }
     ///////////////////////////
 
@@ -38,7 +38,9 @@ class UserController extends Controller
         $data = Person::loginUser($request);
         $session = session()->get('login_user');
         $posts = $data->posts;
-        return view('user.user-top', ['session' => $session, 'posts' => $posts, 'url' => $url]);
+        $fav_counts = Person::loginFavCount($request);
+        return view('user.user-top', ['session' => $session, 'posts' => $posts, 'url' => $url, 'fav_counts' => $fav_counts]);
+        /* return view('test.test', ['fav_count' => $fav_count]); */
     }
     //////////////////
 
@@ -87,4 +89,5 @@ class UserController extends Controller
 
         return $next;
     }
+    
 }

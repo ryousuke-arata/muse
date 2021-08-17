@@ -49,10 +49,12 @@ class Person extends Model
     {
         $form = $request->all();
         unset($form['_token']);
+        unset($form['add']);
         if(isset($request->mail)) {
             $self->timestamps = false;
         }
-        $self->fill($form)->save(); 
+        self::insert($form);
+        $data = self::where('id', $request->id)->where('mail', $request->mail)->first(); 
         session()->put('login_user', $data);
 
     }
@@ -67,6 +69,19 @@ class Person extends Model
 
         session()->put('user_posts', $data->posts);
         return $data;
+    }
+
+    public static function loginFavCount($request)
+    {
+        $fav_counts = [];
+        $data = self::with('posts')->where('mail', $request->mail)->first();
+        $posts = $data->posts;
+        foreach($posts as $post) {
+            $fav = DB::table('favs')->where('post_id', $post->id)->first();
+            $fav_counts[] += $fav->fav_count;     
+        }
+
+        return $fav_counts;
     }
 
     public static function dataUpdate($request) 
@@ -98,10 +113,16 @@ class Person extends Model
 
     public static function sessionCheck($link, $request, $session, $posts)
     {
+        $fav_counts = [];
+        foreach($posts as $post) {
+            $fav = DB::table('favs')->where('post_id', $post->id)->first();
+            $fav_counts[] += $fav->fav_count;
+        }
         $param = [
             'session' => $session,
             'url' => $request->url(),
             'posts' => $posts,
+            'fav_counts' => $fav_counts,
         ];
         if(isset($session)) {
             return view($link, $param);

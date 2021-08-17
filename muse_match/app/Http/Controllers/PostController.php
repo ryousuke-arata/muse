@@ -37,9 +37,18 @@ class PostController extends Controller
     {
         $url = $request->url();
         $post = Post::where('id', $id)->first();
-        return view('post.post-single', ['url' => $url, 'post' => $post]);
+        $fav = DB::table('favs')->where('post_id', $id)->first();
+        return view('post.post-single', ['url' => $url, 'post' => $post,'fav' => $fav]);
     }
 ///////////////////////////////////////////////////////////
+
+    public function fav_update(Request $request, $id)
+    {
+        $url = $request->url();
+        $post = Post::where('id', $id)->first();
+        $fav = Post::favUpdate($request, $id);
+        return view('post.post-single', ['url' => $url, 'post' => $post, 'fav' => $fav]);
+    }
 
 //////////////////////募集文表示ページからユーザーページへアクセス/////////////////////////////
     public function user_page(Request $request, $person_id)

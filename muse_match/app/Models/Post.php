@@ -32,13 +32,20 @@ class Post extends Model
             'venue' => $request->venue,
             'start_date' => $request->start_date,
             'start_time' => $request->start_time,
-            'content' => $request->content, 
+            'content' => $request->content,
         ];
         $id = self::insertGetId($param);
         $data = self::where('id', $id)->first();
+        DB::table('favs')->insert(['person_id' => $person->id, 'post_id' => $id, 'fav_count' => 0]);
         return $data;
     }
     //////////////////////////////////////
+
+    public static function favUpdate($request, $id)
+    {
+        DB::table('favs')->where('post_id', $id)->update(['fav_count' => $request->fav_count + 1]);
+        return DB::table('favs')->where('post_id', $id)->first();
+    }
     
      //////////////投稿からのユーザー情報表示//////////////////
     public static function userPageGet($person_id)

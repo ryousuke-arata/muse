@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{asset('/assets/css/muse.css')}}">
-    <title>Document</title>
+    @include('components.head')
 </head>
 <body>
     <header>
@@ -29,9 +25,10 @@
         </tr>
     </table>
     
-    
+    @if ($posts != '')
     <div class="posts-area">
         @foreach ($posts as $post)
+         @foreach ($fav_counts as $fav_count)
           <a href="http://localhost:81/muse_match/public/messages/{{$post->id}}">
            <div class="post-item">
                <div class="post-title">
@@ -49,10 +46,16 @@
                    <p>{{$post->content}}</p>
                    <p class="updated-at">{{$post->updated_at}}</p>
                </div>
+               <div class="fav-area">
+                   <img src="../public/storage/ハートのマーク.png" alt="いいねの数">
+                   <p>{{$fav_count}}</p>
+               </div>
            </div>
           </a>
+         @endforeach
         @endforeach
     </div>
+    @endif
     <div class="follow-btn">
         <form action='http://localhost:81/muse_match/public/user-page/{{$session->id}}' method="post">
             @csrf

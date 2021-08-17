@@ -51,6 +51,8 @@ Route::post('new-posts', $postNamespace . 'post_new_post');
 
 Route::get('post-single-{id?}', $postNamespace . 'single_post');
 
+Route::post('post-single-{id?}', $postNamespace . 'fav_update');
+
 Route::get('user-page/{person_id?}', $postNamespace . 'user_page');
 
-Route::get('test', $postNamespace . 'test');
+Route::get('test', $userNamespace . 'test');

@@ -2,6 +2,11 @@
 <html lang="ja">
 <head>
     @include('components.head')
+    @php
+        $keys = array_keys($fav_counts);
+        $key = max($keys);
+        $count = 0;
+    @endphp
 </head>
 <body>
     <header>
@@ -28,7 +33,7 @@
     @if ($posts != '')
     <div class="posts-area">
         @foreach ($posts as $post)
-           @foreach ($fav_counts as $fav_count)
+           @while ($count <= $key)
             @if ($url != "http://localhost:81/muse_match/public/user-top")
               <a href="http://localhost:81/muse_match/public/messages/{{$post->id}}">
             @endif
@@ -50,13 +55,16 @@
                   </div>
                   <div class="fav-area">
                       <img src="../public/storage/ハートのマーク.png" alt="いいねの数">
-                      <p>{{$fav_count}}</p>
+                      <p>{{$fav_counts[$count]}}</p>
                   </div>
+                  @php
+                     $count++;   
+                  @endphp
                 </div>
              @if ($url != "http://localhost:81/muse_match/public/user-top")
               </a>
              @endif
-            @endforeach
+            @endwhile
         @endforeach
     </div>
     @endif
